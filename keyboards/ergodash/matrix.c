@@ -36,6 +36,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     extern backlight_config_t backlight_config;
 #endif
 
+#define LED_MOD_ENABLE
+
 #ifdef USE_I2C
 #  include "i2c.h"
 #else // USE_SERIAL
@@ -253,6 +255,8 @@ int serial_transaction(void) {
 #ifdef BACKLIGHT_ENABLE
     // Write backlight level for slave to read
     serial_master_buffer[SERIAL_LED_ADDR] = backlight_config.enable ? backlight_config.level : 0;
+#elif defined LED_MOD_ENABLE
+    serial_master_buffer[SERIAL_LED_ADDR] = PORTB & 0x1;
 #endif
     return 0;
 }
@@ -268,7 +272,7 @@ uint8_t matrix_scan(void)
     if( serial_transaction() ) {
 #endif
         // turn on the indicator led when halves are disconnected
-        TXLED1;
+        // TXLED1;
 
         error_count++;
 
@@ -309,6 +313,14 @@ void matrix_slave_scan(void) {
 #ifdef BACKLIGHT_ENABLE
     // Read backlight level sent from master and update level on slave
     backlight_set(serial_master_buffer[SERIAL_LED_ADDR]);
+#elif defined LED_MOD_ENABLE
+    if (serial_master_buffer[SERIAL_LED_ADDR]) {
+      TXLED1;
+      RXLED1;
+    } else {
+      TXLED0;
+      RXLED0;
+    }
 #endif
 #endif
 }
