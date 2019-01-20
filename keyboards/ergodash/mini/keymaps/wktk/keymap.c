@@ -6,17 +6,20 @@ extern keymap_config_t keymap_config;
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
+#define _CUSTOM 3
 #define _ADJUST 16
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
+  CUSTOM,
   ADJUST,
 };
 
 bool led_status = false;
 uint16_t time = 0;
+bool in_custom_layer = false;
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -55,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,----------------------------------------------------------------------------------------------------------------------.
    */
   [_LOWER] = LAYOUT(
-    _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,                        _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS, \
+    CUSTOM,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,                        _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS, \
     _______, _______, _______, _______, _______, _______, _______,                        _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, \
     KC_LSFT, _______, _______, _______, _______, _______, _______,                        _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, KC_RSFT, \
     LOWER,   _______, _______, _______,          _______, _______, _______,      _______, _______,          _______, _______, _______, _______, LOWER \
@@ -78,6 +81,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_SPC ,                        KC_ENT , KC_N,    KC_M,    KC_LT,   KC_GT,   KC_QUES, KC_RSFT, \
     KC_LCTL, KC_F11 , KC_F12,  EISU,             LOWER,   KC_SPC , KC_DEL,        KC_BSPC,KC_ENT , RAISE,            KC_HOME, KC_PGDN, KC_PGUP, KC_END   \
     ),
+
+  [_CUSTOM] = LAYOUT(
+    KC_TAB,  KC_Q,    _______, _______, _______, _______, _______,                        _______, _______, _______, _______, _______, _______, _______, \
+    KC_LCTL, KC_LEFT, _______, _______, KC_RGHT, _______, _______,                        _______, _______, _______, _______, _______, _______, _______, \
+    KC_LSFT, _______, _______, _______, _______, _______, _______,                        _______, _______, _______, _______, _______, _______, _______, \
+    CUSTOM,  _______, _______, _______,          _______, KC_SPC,  KC_LGUI,      _______, _______, _______,          _______, _______, _______, _______ \
+  ),
 
   /* Adjust
    * ,----------------------------------------------------------------------------------------------------------------------.
@@ -130,6 +140,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case CUSTOM:
+      if (record->event.pressed) {
+        if (in_custom_layer) {
+          layer_off(_CUSTOM);
+          in_custom_layer = false;
+        } else {
+          layer_on(_CUSTOM);
+          in_custom_layer = true;
+        }
       }
       return false;
       break;
