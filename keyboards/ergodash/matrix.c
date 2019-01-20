@@ -281,7 +281,7 @@ uint8_t matrix_scan(void)
         }
     } else {
         // turn off the indicator led on no error
-        TXLED0;
+        // TXLED0;
         error_count = 0;
     }
     matrix_scan_quantum();

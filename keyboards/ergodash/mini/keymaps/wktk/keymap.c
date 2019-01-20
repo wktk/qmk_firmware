@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "pro_micro.h"
 
 extern keymap_config_t keymap_config;
 
@@ -13,6 +14,9 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
 };
+
+bool led_status = false;
+uint16_t time = 0;
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -95,6 +99,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (record->event.pressed && record->event.time - time > 20) {
+    if (led_status) {
+      RXLED0;
+      TXLED0;
+    } else {
+      RXLED1;
+      TXLED1;
+    }
+
+    time = record->event.time;
+    led_status = !led_status;
+  }
+
   switch (keycode) {
     case LOWER:
       if (record->event.pressed) {
