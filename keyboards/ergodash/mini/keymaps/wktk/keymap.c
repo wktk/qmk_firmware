@@ -6,20 +6,17 @@ extern keymap_config_t keymap_config;
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
-#define _CUSTOM 3
 #define _ADJUST 16
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
-  CUSTOM,
   ADJUST,
 };
 
 bool led_status = false;
 uint16_t time = 0;
-bool in_custom_layer = false;
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -28,7 +25,6 @@ bool in_custom_layer = false;
 #define XXXXXXX KC_NO
 #define KC_EISU LALT(KC_GRV)
 #define KC_XLWR LOWER
-#define KC_XCST CUSTOM
 #define KC_XRIS RAISE
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -53,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
     LSFT,     ,     ,     ,     ,     , LALT,           , PGDN, PGUP, COMM, DOT , END , RSFT,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    XLWR,     ,     ,     ,/****/ XCST, LGUI,  ,  , BSPC, ENT ,/****/     ,     ,     , XLWR
+    XLWR,     ,     ,     ,/****/     , LGUI,  ,  , BSPC, ENT ,/****/     ,     ,     , XLWR
 //,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
   ),
 
@@ -68,18 +64,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LCTL, F11 , F12 , EISU,/****/ XLWR, SPC ,  ,  , ENT , XRIS,/****/ HOME, PGDN, PGUP, END
 //,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
     ),
-
-  [_CUSTOM] = LAYOUT_kc(
-//,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
-    TAB ,  Q  ,     ,     ,     ,     ,     ,           ,     ,     ,     ,     ,     ,     ,
-//|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    LCTL, LEFT,     ,     , RGHT,     ,     ,           ,     ,     ,     ,     ,     ,     ,
-//|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    LSFT,     ,     ,     ,     ,     ,     ,           ,     ,     ,     ,     ,     ,     ,
-//|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    XCST,     ,     ,     ,/****/ SPC , LGUI,  ,  ,     ,     ,/****/     ,     ,     ,
-//,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
-  ),
 
   [_ADJUST] = LAYOUT(
 //,--------,--------,--------,--------,--------,--------,--------,--------,--------,--------,--------,--------,--------,--------,--------,
@@ -96,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed && record->event.time - time > 20) {
-    if (led_status || in_custom_layer) {
+    if (led_status) {
       RXLED0;
       TXLED0;
     } else {
@@ -126,18 +110,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case CUSTOM:
-      if (record->event.pressed) {
-        if (in_custom_layer) {
-          layer_off(_CUSTOM);
-          in_custom_layer = false;
-        } else {
-          layer_on(_CUSTOM);
-          in_custom_layer = true;
-        }
       }
       return false;
       break;
