@@ -17,21 +17,21 @@
 
 // Defines the keycodes used by our macros in process_record_user
 enum custom_keycodes {
-  QMKBEST = SAFE_RANGE,
-  QMKURL,
-  QUIZBACK
+  QUIZ_COPY = SAFE_RANGE,
+  QUIZ_CP_BR,
+  QUIZ_REVT
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT( /* Base */
-    LCMD(KC_TAB), QUIZBACK, QMKBEST, QMKURL, \
+    LCMD(KC_TAB), QUIZ_REVT, QUIZ_COPY, QUIZ_CP_BR, \
     KC_ENT, LCMD(KC_V), KC_TAB, KC_HOME \
   ),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QMKBEST:
+    case QUIZ_COPY:
       if (record->event.pressed) {
         SEND_STRING(SS_LGUI("c"));
         _delay_ms(50);
@@ -45,7 +45,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
       }
       break;
-    case QMKURL:
+    case QUIZ_CP_BR:
       if (record->event.pressed) {
         SEND_STRING(SS_LGUI("c"));
         _delay_ms(50);
@@ -59,7 +59,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
       }
       break;
-    case QUIZBACK:
+    case QUIZ_REVT:
       if (record->event.pressed) {
         SEND_STRING(SS_LGUI("\t"));
         _delay_ms(50);
