@@ -33,27 +33,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QMKBEST:
       if (record->event.pressed) {
-        SEND_STRING(SS_LGUI("c\t"));
+        SEND_STRING(SS_LGUI("c"));
+        _delay_ms(50);
+        SEND_STRING(SS_LGUI("\t"));
         SEND_STRING("\n");
         SEND_STRING(SS_LGUI("v"));
+        _delay_ms(50);
         SEND_STRING("\t");
+        _delay_ms(50);
         SEND_STRING(SS_LGUI("\t"));
       } else {
       }
       break;
     case QMKURL:
       if (record->event.pressed) {
-        SEND_STRING(SS_LGUI("c\t"));
+        SEND_STRING(SS_LGUI("c"));
+        _delay_ms(50);
+        SEND_STRING(SS_LGUI("\t"));
         SEND_STRING("\n");
         SEND_STRING(SS_LGUI("v"));
+        _delay_ms(50);
         SEND_STRING("\n");
+        _delay_ms(50);
         SEND_STRING(SS_LGUI("\t"));
       } else {
       }
       break;
     case QUIZBACK:
       if (record->event.pressed) {
-        SEND_STRING(SS_LGUI("\tz\t"));
+        SEND_STRING(SS_LGUI("\t"));
+        _delay_ms(50);
+        SEND_STRING(SS_LGUI("z"));
+        _delay_ms(50);
+        SEND_STRING(SS_LGUI("\t"));
       } else {
       }
       break;
