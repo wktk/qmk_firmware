@@ -24,7 +24,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT( /* Base */
     LCMD(KC_TAB), LCMD(KC_C), KC_TAB, LCMD(KC_Z), \
-    KC_TAB, KC_ENT, LCMD(KC_V), KC_HOME \
+    KC_ENT, LCMD(KC_V), KC_TAB, KC_HOME \
   ),
 };
 
