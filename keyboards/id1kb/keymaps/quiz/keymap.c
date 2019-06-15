@@ -23,7 +23,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT( /* Base */
-    LCMD(KC_TAB), LCMD(KC_C), KC_TAB, LCMD(KC_Z), \
+    LCMD(KC_TAB), LCMD(KC_C), QMKBEST, QMKURL, \
     KC_ENT, LCMD(KC_V), KC_TAB, KC_HOME \
   ),
 };
@@ -32,18 +32,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QMKBEST:
       if (record->event.pressed) {
-        // when keycode QMKBEST is pressed
-        SEND_STRING("QMK is the best thing ever!");
+        SEND_STRING(SS_LGUI("c\t"));
+        SEND_STRING("\n");
+        SEND_STRING(SS_LGUI("v"));
+        SEND_STRING("\t");
+        SEND_STRING(SS_LGUI("\t"));
       } else {
-        // when keycode QMKBEST is released
       }
       break;
     case QMKURL:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
-        SEND_STRING("https://qmk.fm/" SS_TAP(X_ENTER));
+        SEND_STRING(SS_LGUI("c\t"));
+        SEND_STRING("\n");
+        SEND_STRING(SS_LGUI("v"));
+        SEND_STRING("\n");
+        SEND_STRING(SS_LGUI("\t"));
       } else {
-        // when keycode QMKURL is released
       }
       break;
   }
