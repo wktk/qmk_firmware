@@ -41,7 +41,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("\n");
         _delay_ms(50);
         SEND_STRING(SS_LGUI("v"));
-        _delay_ms(50);
+        _delay_ms(100);
         SEND_STRING("\t");
         _delay_ms(50);
         SEND_STRING(SS_LGUI("\t"));
@@ -56,7 +56,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("\n");
         _delay_ms(50);
         SEND_STRING(SS_LGUI("v"));
-        _delay_ms(50);
+        _delay_ms(100);
         SEND_STRING("\n");
         _delay_ms(50);
         SEND_STRING(SS_TAP(X_HOME));
