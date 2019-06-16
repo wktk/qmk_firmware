@@ -19,13 +19,15 @@
 enum custom_keycodes {
   QUIZ_COPY = SAFE_RANGE,
   QUIZ_CP_BR,
-  QUIZ_REVT
+  QUIZ_REVT,
+  QUIZ_FCUS,
+  QUIZ_FCUS_BR
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT( /* Base */
     LCMD(KC_TAB), QUIZ_REVT, QUIZ_COPY, QUIZ_CP_BR, \
-    KC_ENT, LCMD(KC_V), KC_TAB, KC_HOME \
+    KC_ENT, QUIZ_REVT, QUIZ_FCUS, QUIZ_FCUS_BR \
   ),
 };
 
@@ -64,6 +66,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_LGUI("\t"));
         _delay_ms(50);
         SEND_STRING(SS_LGUI("z"));
+        _delay_ms(50);
+        SEND_STRING(SS_LGUI("\t"));
+      } else {
+      }
+      break;
+    case QUIZ_FCUS:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LGUI("\t"));
+        _delay_ms(50);
+        SEND_STRING(SS_TAP(X_LEFT));
+        _delay_ms(50);
+        SEND_STRING(SS_LGUI("\t"));
+      } else {
+      }
+      break;
+    case QUIZ_FCUS_BR:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LGUI("\t"));
+        _delay_ms(50);
+        SEND_STRING(SS_TAP(X_UP));
+        SEND_STRING(SS_TAP(X_RIGHT));
+        _delay_ms(50);
+        SEND_STRING(SS_TAP(X_RIGHT));
+        _delay_ms(50);
+        SEND_STRING(SS_TAP(X_RIGHT));
+        _delay_ms(50);
+        SEND_STRING(SS_TAP(X_RIGHT));
         _delay_ms(50);
         SEND_STRING(SS_LGUI("\t"));
       } else {
