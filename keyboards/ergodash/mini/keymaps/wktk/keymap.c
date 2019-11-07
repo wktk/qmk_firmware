@@ -25,7 +25,7 @@ uint16_t time = 0;
 #define XXXXXXX KC_NO
 #define KC_EISU LALT(KC_GRV)
 #define KC_XLWR LOWER
-#define KC_XRIS RAISE
+#define KC_XRIS TG(RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
     LCTL,  A  ,  S  ,  D  ,  F  ,  G  , LBRC,       RBRC,  H  ,  J  ,  K  ,  L  , SCLN, QUOT,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    LSFT,  Z  ,  X  ,  C  ,  V  ,  B  , LALT,           ,  N  ,  M  , COMM, DOT , SLSH, RSFT,
+    LSFT,  Z  ,  X  ,  C  ,  V  ,  B  , LALT,       XRIS,  N  ,  M  , COMM, DOT , SLSH, RSFT,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
     XLWR,     ,     ,LANG2,/****/ SPC , LGUI,  ,  , BSPC, ENT ,/****/LANG1,     ,     , XLWR
 //,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
@@ -55,13 +55,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT_kc(
 //,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
-    GRV , EXLM, AT  , HASH, DLR , PERC, UNDS,       PLUS, CIRC, AMPR, ASTR, LPRN, RPRN, PIPE,
+    GRV , EXLM, AT  , HASH, DLR , PERC, UNDS,       PLUS,  7  ,  8  ,  9  ,     ,     ,     ,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    TILD, F1  , F2  , F3  , F4  , F5  , LCBR,       RCBR, LEFT, DOWN, UP  , RGHT, COLN, DQT ,
+    TILD, F1  , F2  , F3  , F4  , F5  , LCBR,           ,  4  ,  5  ,  6  ,     ,     ,     ,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    LSFT, F6  , F7  , F8  , F9  , F10 , SPC ,       ENT ,  N  ,  M  , LT  , GT  , QUES, RSFT,
+    LSFT, F6  , F7  , F8  , F9  , F10 , SPC ,       XRIS,  1  ,  2  ,  3  , ENT ,     ,     ,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    LCTL, F11 , F12 , EISU,/****/ XLWR, SPC ,  ,  , ENT , XRIS,/****/ HOME, PGDN, PGUP, END
+    LCTL, F11 , F12 , EISU,/****/ XLWR, SPC ,  ,  , BSPC,  0  ,/****/ COMM, DOT ,     ,    //
 //,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
     ),
 
