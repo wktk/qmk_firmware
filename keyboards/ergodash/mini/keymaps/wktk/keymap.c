@@ -25,7 +25,7 @@ uint16_t time = 0;
 #define XXXXXXX KC_NO
 #define KC_EISU LALT(KC_GRV)
 #define KC_XLWR LOWER
-#define KC_XRIS TG(RAISE)
+#define KC_XRIS TG(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
     TILD, F1  , F2  , F3  , F4  , F5  , LCBR,           ,  4  ,  5  ,  6  ,     ,     ,     ,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    LSFT, F6  , F7  , F8  , F9  , F10 , SPC ,       XRIS,  1  ,  2  ,  3  , ENT ,     ,     ,
+    LSFT, F6  , F7  , F8  , F9  , F10 , SPC ,       TRNS,  1  ,  2  ,  3  , ENT ,     ,     ,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
     LCTL, F11 , F12 , EISU,/****/ XLWR, SPC ,  ,  , BSPC,  0  ,/****/ COMM, DOT ,     ,    //
 //,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
