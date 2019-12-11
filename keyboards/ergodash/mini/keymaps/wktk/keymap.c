@@ -26,6 +26,9 @@ uint16_t time = 0;
 #define KC_EISU LALT(KC_GRV)
 #define KC_XLWR LOWER
 #define KC_XRIS TG(_RAISE)
+#define KC_VLUP KC__VOLUP
+#define KC_VLDN KC__VOLDOWN
+#define KC_VLMT KC__MUTE
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -57,9 +60,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
     GRV , EXLM, AT  , HASH, DLR , PERC, UNDS,       PLUS,  7  ,  8  ,  9  ,     ,     ,     ,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    TILD, F1  , F2  , F3  , F4  , F5  , LCBR,           ,  4  ,  5  ,  6  ,     ,     ,     ,
+    TILD, VLDN, VLUP, VLMT, F4  , F5  , LCBR,           ,  4  ,  5  ,  6  ,     ,     ,     ,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
-    LSFT, F6  , F7  , F8  , F9  , F10 , SPC ,       TRNS,  1  ,  2  ,  3  , ENT ,     ,     ,
+    LSFT, BRMD, BRMU, F8  , F9  , F10 , SPC ,       TRNS,  1  ,  2  ,  3  , ENT ,     ,     ,
 //|-----|-----|-----|-----|-----|-----|-----|     |-----|-----|-----|-----|-----|-----|-----|
     LCTL, F11 , F12 , EISU,/****/ XLWR, SPC ,  ,  , BSPC,  0  ,/****/ COMM, DOT ,     ,    //
 //,-----,-----,-----,-----,-----,-----,-----,     ,-----,-----,-----,-----,-----,-----,-----,
