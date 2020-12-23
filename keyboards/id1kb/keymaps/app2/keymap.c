@@ -23,7 +23,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT( /* Base */
-    KC_SPC, KC_UP, KC_DOWN, LGUI(LOPT(KC_Y)), \
+    KC_ESC, KC_UP, KC_DOWN, LGUI(LOPT(KC_Y)), \
     LCMD(KC_MINUS), KC_LEFT, KC_RIGHT, LCMD(KC_PLUS)  \
   ), \
   [1] = LAYOUT(
