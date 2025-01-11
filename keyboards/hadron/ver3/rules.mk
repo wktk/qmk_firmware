@@ -1,4 +1,6 @@
-# MCU name
+# projecct specific files
+
+# Cortex version
 MCU = STM32F303
 
 # Build Options
@@ -15,9 +17,8 @@ COMMAND_ENABLE = yes    # Commands for debug and configuration
 NKRO_ENABLE = yes	    # USB Nkey Rollover
 CUSTOM_MATRIX = no # Custom matrix file
 AUDIO_ENABLE = yes
-RGBLIGHT_ENABLE = yes
-RGB_MATRIX_ENABLE = no # once arm_rgb is implemented
-RGB_MATRIX_DRIVER = WS2812
+RGBLIGHT_ENABLE = no
+RGB_MATRIX_ENABLE = no #WS2812 once arm_rgb is implemented
 HAPTIC_ENABLE += DRV2605L
 QWIIC_ENABLE += MICRO_OLED
 ENCODER_ENABLER = yes

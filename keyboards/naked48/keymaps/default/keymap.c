@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 
+extern keymap_config_t keymap_config;
 
 #ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
@@ -108,3 +109,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_init_user(void) {
 
 }
+

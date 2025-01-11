@@ -41,7 +41,6 @@ all: elf
 
 VPATH += $(COMMON_VPATH)
 PLATFORM:=TEST
-PLATFORM_KEY:=test
 
 ifneq ($(filter $(FULL_TESTS),$(TEST)),)
 include tests/$(TEST)/rules.mk
@@ -49,7 +48,6 @@ endif
 
 include common_features.mk
 include $(TMK_PATH)/common.mk
-include $(QUANTUM_PATH)/sequencer/tests/rules.mk
 include $(QUANTUM_PATH)/serial_link/tests/rules.mk
 ifneq ($(filter $(FULL_TESTS),$(TEST)),)
 include build_full_test.mk

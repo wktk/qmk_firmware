@@ -1,12 +1,7 @@
 ---
 name: Feature request
-about: Suggest a new feature or changes to existing features.
-title: "[Feature Request] "
-labels: enhancement, help wanted
-assignees: ''
-
+about: Suggest a new feature or changes to existing features 
 ---
-
 <!--- Provide a general summary of the changes you want in the title above. -->
 
 <!--- This template is entirely optional and can be removed, but is here to help both you and us. -->

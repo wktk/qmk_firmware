@@ -3,7 +3,6 @@
 
 #include "../../config.h"
 
-#undef WORKMAN_SOUND
 #define WORKMAN_SOUND COLEMAK_SOUND
 
 #ifdef AUDIO_ENABLE

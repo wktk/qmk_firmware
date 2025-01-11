@@ -1,4 +1,3 @@
-# MCU name
 MCU = STM32F303
 
 # Build Options

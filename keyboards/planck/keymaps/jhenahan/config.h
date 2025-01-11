@@ -4,7 +4,6 @@
 #include "../../config.h"
 
 #define FORCE_NKRO
-#undef WORKMAN_SOUND
 #define WORKMAN_SOUND COLEMAK_SOUND
 
 /*

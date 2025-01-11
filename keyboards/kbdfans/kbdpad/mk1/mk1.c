@@ -16,18 +16,14 @@
 
 #include "mk1.h"
 
-void keyboard_pre_init_kb(void) {
-    led_init_ports();
-    keyboard_pre_init_user();
+#define NUMLOCK_PIN D0
+
+void matrix_init_kb(void) {
+    setPinOutput(NUMLOCK_PIN);
+    matrix_init_user();
 }
 
-void led_init_ports(void) {
-    setPinOutput(D0);
-}
-
-bool led_update_kb(led_t led_state) {
-    if (led_update_user(led_state)) {
-        writePin(D0, led_state.num_lock);
-    }
-    return true;
+void led_set_kb(uint8_t usb_led) {
+    writePin(NUMLOCK_PIN, IS_LED_ON(usb_led, USB_LED_NUM_LOCK));
+    led_set_user(usb_led);
 }

@@ -27,7 +27,7 @@ In your keymap's `rules.mk` file, add the following:
 
 ```make
 RGBLIGHT_ENABLE = no
-RGB_MATRIX_ENABLE = yes
+RGB_MATRIX_ENABLE = WS2812
 ```
 
 And in your `config.h` file, add the following:

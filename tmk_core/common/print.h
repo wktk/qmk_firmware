@@ -72,7 +72,9 @@ extern "C"
 
 #    elif defined(PROTOCOL_CHIBIOS) /* PROTOCOL_CHIBIOS */
 
-#        include "printf.h"  // lib/printf/printf.h
+#        ifndef TERMINAL_ENABLE
+#            include "chibios/printf.h"
+#        endif
 
 #        ifdef USER_PRINT /* USER_PRINT */
 
@@ -87,6 +89,7 @@ extern "C"
 #            define uprintf printf
 
 #        else /* NORMAL PRINT */
+
 // Create user & normal print defines
 #            define print(s) printf(s)
 #            define println(s) printf(s "\r\n")
@@ -125,7 +128,38 @@ extern "C"
 
 #        endif /* USER_PRINT / NORMAL PRINT */
 
-#    endif /* __AVR__ / PROTOCOL_CHIBIOS / PROTOCOL_ARM_ATSAM */
+#    elif defined(__arm__) /* __arm__ */
+
+#        include "mbed/xprintf.h"
+
+#        ifdef USER_PRINT /* USER_PRINT */
+
+// Remove normal print defines
+#            define print(s)
+#            define println(s)
+#            define xprintf(fmt, ...)
+
+// Create user print defines
+#            define uprintf(fmt, ...) __xprintf(fmt, ##__VA_ARGS__)
+#            define uprint(s) xprintf(s)
+#            define uprintln(s) xprintf(s "\r\n")
+
+#        else /* NORMAL PRINT */
+
+// Create user & normal print defines
+#            define xprintf(fmt, ...) __xprintf(fmt, ##__VA_ARGS__)
+#            define print(s) xprintf(s)
+#            define println(s) xprintf(s "\r\n")
+#            define uprint(s) print(s)
+#            define uprintln(s) println(s)
+#            define uprintf(fmt, ...) xprintf(fmt, ##__VA_ARGS__)
+
+#        endif /* USER_PRINT / NORMAL PRINT */
+
+/* TODO: to select output destinations: UART/USBSerial */
+#        define print_set_sendchar(func)
+
+#    endif /* __AVR__ / PROTOCOL_CHIBIOS / PROTOCOL_ARM_ATSAM / __arm__ */
 
 // User print disables the normal print messages in the body of QMK/TMK code and
 // is meant as a lightweight alternative to NOPRINT. Use it when you only want to do

@@ -1,12 +1,7 @@
 ---
 name: Bug report
-about: Create a report to help us improve QMK Firmware.
-title: "[Bug] "
-labels: bug, help wanted
-assignees: ''
-
+about: Create a report to help us improve the QMK Firmware
 ---
-
 <!-- Provide a general summary of the bug in the title above. -->
 
 <!--- This template is entirely optional and can be removed, but is here to help both you and us. -->

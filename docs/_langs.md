@@ -4,6 +4,4 @@
   - [:es: Español](/es/)
   - [:fr: Français](/fr-fr/)
   - [:he: עברית](/he-il/)
-  - [:brazil: Português](/pt-br/)
   - [:ru: Русский](/ru-ru/)
-  - [:jp: 日本語](/ja/)
